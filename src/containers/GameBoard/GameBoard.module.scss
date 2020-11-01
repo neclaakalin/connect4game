@@ -1,5 +1,5 @@
 .topBar {
-  margin: 10px 0px;
+  margin: 10px 0px 0px 0px;
   text-align: center;
 }
 
@@ -17,6 +17,7 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0;
+  box-shadow: 0 0 5px #55555555;
 
   &:hover {
     box-shadow: 0 0 10px #333333aa;
@@ -35,6 +36,7 @@
   font-size: 40px;
   margin: 0;
   text-align: right;
+  box-shadow: 0 0 5px #55555555;
 }
 
 .scoreYellow {
@@ -42,12 +44,14 @@
   height: 50px;
   border-radius: 25px 0 0 25px;
   padding-left: 15px;
+  box-sizing: border-box;
   float: right;
   color: white;
   background-color: #f0ec2a;
   font-size: 40px;
   margin: 0;
   text-align: left;
+  box-shadow: 0 0 5px #55555555;
 }
 
 .alertMessage {
