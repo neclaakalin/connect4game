@@ -1,0 +1,32 @@
+html {
+  font-size: 10px;
+}
+
+.rowBox {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  background-color: #3f92fd;
+  z-index: 0;
+}
+
+.circle {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 1px solid #367fdf;
+  background-color: white;
+  z-index: 10;
+  transform: translate(10%, 10%);
+  -webkit-box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.75);
+}
+
+.red {
+  background-color: #a31b22 !important;
+}
+
+.yellow {
+  background-color: #f0ec2a !important;
+}

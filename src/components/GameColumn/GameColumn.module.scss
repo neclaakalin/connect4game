@@ -1,0 +1,36 @@
+html {
+  font-size: 10px;
+}
+
+.columnBox {
+  display: inline;
+  float: left;
+}
+
+.topCircle {
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem auto;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.columnBox:hover .topCircle {
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem auto;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.columnBox:hover .red {
+  background-color: #a31b22 !important;
+}
+
+.columnBox:hover .yellow {
+  background-color: #f0ec2a !important;
+}
