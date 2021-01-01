@@ -3,22 +3,29 @@ import GameColumn from "../../components/GameColumn/GameColumn";
 import styles from "./GameBoard.module.scss";
 
 const initialColumnValues: {
-  [index: number]: Array<"red" | "yellow">;
+  [index: number]: Array<any>;
 } = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
+const color_array = ["red", "green", "yellow"];
+
 const GameBoard = () => {
-  const [currentColor, setCurrentColor] = useState<"red" | "yellow">("red");
+  const [currentColor, setCurrentColor] = useState<any>("red");
   const [columnValues, setColumnValues] = useState(initialColumnValues);
-  const [winner, setWinner] = useState<"red" | "yellow">();
+  const [winner, setWinner] = useState<any>();
   const [isOver, setIsOver] = useState<boolean>(false);
   const [lastMove, setLastMove] = useState<{
     column: number;
     row: number;
     color: "red" | "yellow";
   }>();
-  const [scores, setScores] = useState<{ red: number; yellow: number }>({
+  const [scores, setScores] = useState<{
+    red: number;
+    yellow: number;
+    green: number;
+  }>({
     red: 0,
     yellow: 0,
+    green: 0,
   });
 
   useEffect(() => {
@@ -31,7 +38,6 @@ const GameBoard = () => {
       let gameWinner = checkMatch();
       if (gameWinner) {
         const newScore = scores[gameWinner] + 1;
-        console.log(scores[gameWinner], newScore);
         setScores({ ...scores, [gameWinner]: newScore });
         setWinner(gameWinner);
       }
@@ -100,9 +106,15 @@ const GameBoard = () => {
         ...columnValues,
         [lastMove.column]: [...columnValues[lastMove.column], lastMove.color],
       });
-      currentColor === "red"
-        ? setCurrentColor("yellow")
-        : setCurrentColor("red");
+      setCurrentColor(
+        color_array[
+          (color_array.findIndex(
+            (currentValue) => currentValue === currentColor
+          ) +
+            1) %
+            3
+        ]
+      );
     }
   }, [lastMove]);
 
@@ -123,12 +135,48 @@ const GameBoard = () => {
     setIsOver(false);
   };
 
+  const handleUndo = () => {
+    console.log("clicked");
+    if (lastMove) {
+      let newColumnValues = columnValues[lastMove.column];
+      newColumnValues.pop();
+      setColumnValues({
+        ...columnValues,
+        [lastMove.column]: newColumnValues,
+      });
+      setCurrentColor(
+        color_array[
+          (color_array.findIndex(
+            (currentValue) => currentValue === currentColor
+          ) +
+            2) %
+            3
+        ]
+      );
+      if (winner) {
+        setWinner(undefined);
+      }
+      if (isOver) {
+        setIsOver(false);
+      }
+      setLastMove(undefined);
+    }
+  };
+
   return (
     <>
       <div className={styles.topBar}>
         <p className={styles.scoreRed}> {scores.red} </p>
+        <p className={styles.scoreGreen}> {scores.green} </p>
         <button className={styles.gameButton} onClick={handleNewGameClick}>
           New Game
+        </button>
+        <button
+          disabled={lastMove ? false : true}
+          className={styles.gameButton}
+          onClick={handleUndo}
+        >
+          Undo
         </button>
         <p className={styles.scoreYellow}> {scores.yellow} </p>
         {winner && (

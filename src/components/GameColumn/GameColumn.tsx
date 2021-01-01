@@ -3,8 +3,8 @@ import GameRow from "../GameRow/GameRow";
 import styles from "./GameColumn.module.scss";
 
 interface GameColumnProps {
-  currentColor: "red" | "yellow";
-  rowValues: Array<"red" | "yellow">;
+  currentColor: any;
+  rowValues: Array<any>;
   index: number;
   onClick: (n: number) => void;
 }

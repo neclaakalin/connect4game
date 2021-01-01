@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./GameRow.module.scss";
 
 interface GameRowProps {
-  circleColor?: "red" | "yellow" | undefined;
+  circleColor?: any;
 }
 
 const GameRow = (props: GameRowProps) => {
